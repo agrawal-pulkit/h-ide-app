@@ -1,13 +1,19 @@
 {
   "name": "ide-app",
   "version": "0.0.0",
+  "engines": {
+    "node": "10.15.0",
+    "npm": "6.9.0"
+  },
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "start": "node server.js",
+    "heroku-postbuild": "ng build --prod",
+    "postinstall": "ng build --aot -prod"
   },
   "private": true,
   "dependencies": {
@@ -21,7 +27,9 @@
     "@angular/router": "~8.0.1",
     "ace-builds": "^1.4.5",
     "bootstrap": "^4.3.1",
+    "express": "^4.17.1",
     "jquery": "^3.4.1",
+    "path": "^0.12.7",
     "popper.js": "^1.15.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
