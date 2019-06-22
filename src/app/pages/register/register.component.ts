@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
-import { AlertService, UserService } from '../../../services';
+import { AlertService, UserService } from '../../../services/user-service';
 
 
 @Component({templateUrl: 'register.component.html'})

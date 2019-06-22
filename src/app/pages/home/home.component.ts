@@ -2,7 +2,7 @@
 import { first } from 'rxjs/operators';
 
 import { User } from './../../../modals/users/users';
-import { UserService } from './../../../services';
+import { UserService } from './../../../services/user-service';
 
 @Component({templateUrl: 'home.component.html'})
 export class HomeComponent implements OnInit {

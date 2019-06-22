@@ -1,15 +1,17 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, map, tap, first } from 'rxjs/operators';
 
 import { LanguageTable, Language } from './../../../modals/languages/languages';
 import { CodeEditorComponent } from './../../code-editor';
-import { ServerHandlerService } from './../../../services';
+import { ServerHandlerService } from './../../../services/server-handler/server-handler.service';
 import {
     DEFAULT_INIT_EDITOR_OPTIONS,
     DEFAULT_SUPPORTED_EDITOR_THEMES,
     DEFAULT_RUN_ERROR_MESSAGE
 } from './default-options';
+import { PostService }  from './../../../services/post-service/post-service.service';
+import { AlertService } from './../../../services/user-service';
 
 @Component({
     selector: 'app-main-page',
@@ -35,8 +37,11 @@ import {
     // observable of the run request output.
     public output$: Observable<string>;
     isLoggedIn: boolean = false;
+    codeOutput: any;
 
-    constructor(private handler: ServerHandlerService) { }
+    constructor(private handler: ServerHandlerService, 
+        private postService: PostService,
+        private alertService: AlertService) { }
 
     ngOnInit() {
         this.languagesArray$ = this.pipeSuppurtedLanguages();
@@ -90,7 +95,9 @@ import {
                 id: language.lang, version: language.version
             }).pipe(
                 // returning the output content.
-                map((response: RunResult) => response.output ),
+                map((response: RunResult) => {
+                    this.codeOutput = response
+                    return response.output }),
                 // console log any error and returning an error message.
                 catchError((err) => {
                     console.log(err);
@@ -99,6 +106,22 @@ import {
             );
             
         }
+    }
+
+    public onSaveContent() {
+        console.log("this.output:: ", this.codeOutput)
+        this.codeOutput.code = this.codeEditor.getContent()
+        let post: any = this.createPostRequest()
+        post.content = this.codeOutput
+        this.postService.createPost(post)
+            .pipe(first())
+            .subscribe(
+                data => {
+                    this.alertService.success('Post successfully saved in your profile', true);
+                },
+                error => {
+                    this.alertService.error(error);
+                });
     }
 
     public onChangeTheme(theme: string) {
@@ -119,6 +142,27 @@ import {
         localStorage.removeItem('currentUser');
         this.isLoggedIn = false
     }
+
+    createPostRequest(){
+        const user: any = localStorage.getItem('currentUser')
+        return {
+            "userName": user.userName,
+            "userEmail": user.userEmail,
+            "postTitle": Math.random(),
+            "postDescription": "demo post",
+            "content": {},
+            "postType": "test",
+            "likes": {
+                "count" :0 
+            },
+            "share": {
+                "count" :0
+            },
+            "comments": {
+                "count" :0
+            }
+        }
+    }
 }
 
 interface RunResult {
@@ -127,3 +171,5 @@ interface RunResult {
     memory: string;
     cpuTime: string;
 }
+
+

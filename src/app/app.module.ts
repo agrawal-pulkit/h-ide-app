@@ -8,7 +8,7 @@ import { CodeEditorModule } from './code-editor';
 
 import { MainPageComponent } from './pages/main-page/main-page.component';
 
-import { servicesArray, AlertService, AuthenticationService, UserService } from './../services/';
+import { servicesArray} from './../services/';
 import { routing } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AlertComponent } from './_directives';
@@ -35,10 +35,7 @@ import { AuthGuard } from './_guards';
     ],
     providers: [
         AuthGuard,
-        AlertService,
-        AuthenticationService,
-        servicesArray,
-        UserService
+        servicesArray
         // { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 

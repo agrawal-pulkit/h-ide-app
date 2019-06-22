@@ -1,9 +1,13 @@
 import { HttpService } from './http/http.service';
 import { ServerHandlerService } from './server-handler/server-handler.service';
+import { PostService } from './post-service/post-service.service';
+import { AlertService, UserService, AuthenticationService} from './user-service';
+
 export const servicesArray = [
    HttpService,
-   ServerHandlerService
+   ServerHandlerService,
+   PostService,
+   UserService,
+   AuthenticationService,
+   AlertService
 ];
-export { HttpService } from './http/http.service';
-export { ServerHandlerService } from './server-handler/server-handler.service';
-export { UserService, AlertService, AuthenticationService} from './user-service';

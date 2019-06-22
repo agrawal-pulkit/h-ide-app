@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   BASE_URL: 'https://pulkit-ide-api.herokuapp.com/',
-  apiUrl: 'http://localhost:3000'
+  apiUrl: 'http://localhost:3000',
+  POST_API: 'http://localhost:4001'
   // BASE_URL: 'http://localhost:3000/'
 };
 /*
