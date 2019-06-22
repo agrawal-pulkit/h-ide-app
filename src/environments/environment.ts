@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  BASE_URL: 'http://localhost:3000/'
+  BASE_URL: 'https://pulkit-ide-api.herokuapp.com/',
+  apiUrl: 'http://localhost:3000'
+  // BASE_URL: 'http://localhost:3000/'
 };
 /*
  * For easier debugging in development mode, you can import the following file

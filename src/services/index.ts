@@ -6,3 +6,4 @@ export const servicesArray = [
 ];
 export { HttpService } from './http/http.service';
 export { ServerHandlerService } from './server-handler/server-handler.service';
+export { UserService, AlertService, AuthenticationService} from './user-service';

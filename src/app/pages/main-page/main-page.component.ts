@@ -34,13 +34,17 @@ import {
     public languagesArray$: Observable<Language[]>;
     // observable of the run request output.
     public output$: Observable<string>;
+    isLoggedIn: boolean = false;
 
     constructor(private handler: ServerHandlerService) { }
 
     ngOnInit() {
         this.languagesArray$ = this.pipeSuppurtedLanguages();
         this.activatedTheme = this.initEditorOptions.theme;
-        
+        if (localStorage.getItem('currentUser')) {
+            // logged in so return true
+            this.isLoggedIn = true;
+          }
     }
 
     // #region - private
@@ -110,6 +114,11 @@ import {
         this.codeEditor.setLanguageMode(langMode);
     }
     // #endregion
+
+    private logout(event: any) {
+        localStorage.removeItem('currentUser');
+        this.isLoggedIn = false
+    }
 }
 
 interface RunResult {

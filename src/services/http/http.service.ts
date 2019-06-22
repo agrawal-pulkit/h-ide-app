@@ -29,4 +29,26 @@ export class HttpService {
             throw error;
         }
     }
+
+    public put<T>(queryUrl: string, requestBody: object, headers?: HttpHeaders, params?: HttpParams): Observable<T> {
+        try {
+            return this.http.put<T>(queryUrl, requestBody, {
+                observe: 'response', headers, params
+            }).pipe( map(result => result.body) );
+        } catch (error) {
+            console.log(error);  
+            throw error;
+        }
+    }
+
+    public delete<T>(queryUrl: string, headers?: HttpHeaders, params?: HttpParams): Observable<T> {
+        try {
+            return this.http.delete<T>(queryUrl, {
+                observe: 'response', headers, params
+            }).pipe( map(result => result.body) );
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    }
 }
