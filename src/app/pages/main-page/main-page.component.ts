@@ -113,6 +113,7 @@ import { AlertService } from './../../../services/user-service';
         this.codeOutput.code = this.codeEditor.getContent()
         let post: any = this.createPostRequest()
         post.content = this.codeOutput
+        console.log(post)
         this.postService.createPost(post)
             .pipe(first())
             .subscribe(
@@ -144,7 +145,8 @@ import { AlertService } from './../../../services/user-service';
     }
 
     createPostRequest(){
-        const user: any = localStorage.getItem('currentUser')
+        const user: any = JSON.parse(localStorage.getItem('currentUser'));
+        console.log("user:: ", user)
         return {
             "userName": user.userName,
             "userEmail": user.userEmail,
