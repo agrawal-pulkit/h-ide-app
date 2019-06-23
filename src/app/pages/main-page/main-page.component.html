@@ -3,6 +3,9 @@
         <div class="container text-center p-2 ">
             <span class="mx-auto font-weight-bold">My Own IDE</span>
         </div>
+    <div *ngIf=isLoggedIn>
+        <a [routerLink]="['/post']" class="btn btn-link">Posts</a>
+    </div>
         <div *ngIf=!isLoggedIn>
             <a [routerLink]="['/login']" class="btn btn-link">Login</a>
         </div><div *ngIf=isLoggedIn>
