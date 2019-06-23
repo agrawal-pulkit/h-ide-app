@@ -8,7 +8,7 @@ import { User } from 'src/modals/users/users';
 @Component({templateUrl: 'home.component.html'})
 export class HomeComponent implements OnInit {
     currentUser: User;
-    posts: Post[] = [];
+    posts: any;
 
     constructor(private postService: PostService) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
