@@ -1,11 +1,15 @@
 ﻿import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
 
 import { AlertService, AuthenticationService } from './../../../services/user-service';
 
-@Component({templateUrl: 'login.component.html'})
+
+@Component({
+    styleUrls: ['login.component.css'],
+    templateUrl: 'login.component.html'
+})
 export class LoginComponent implements OnInit {
     loginForm: FormGroup;
     loading = false;
@@ -17,7 +21,7 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private authenticationService: AuthenticationService,
-        private alertService: AlertService) {}
+        private alertService: AlertService) { }
 
     ngOnInit() {
         this.loginForm = this.formBuilder.group({
@@ -29,7 +33,7 @@ export class LoginComponent implements OnInit {
         this.authenticationService.logout();
 
         // get return url from route parameters or default to '/'
-        // this.route.snapshot.queryParams['returnUrl'] 
+        // this.route.snapshot.queryParams['returnUrl']
         this.returnUrl = '/';
     }
 
@@ -45,26 +49,26 @@ export class LoginComponent implements OnInit {
         }
 
         this.loading = true;
-        console.log("returnUrl:: ", this.returnUrl);
+        // console.log('returnUrl:: ', this.returnUrl);
         this.authenticationService.login(this.f.username.value, this.f.password.value)
             .pipe(first())
             .subscribe(
                 data => {
-                    if (data && data.userObject == null){
+                    if (data && data.userObject == null) {
                         this.alertService.error(data.status.value);
-                        this.loading = false; 
+                        this.loading = false;
+                    } else {
+                        this.router.navigate([this.returnUrl]);
                     }
                     // else if (!data.userObject.isValidUser){
                     //     this.alertService.error("Please verify your user. We have sent verification link in your inbox.");
-                    //     this.loading = false; 
+                    //     this.loading = false;
                     // }
-                    else{
-                        this.router.navigate([this.returnUrl]);
-                    }
                 },
                 error => {
                     this.alertService.error(error);
                     this.loading = false;
                 });
     }
+
 }

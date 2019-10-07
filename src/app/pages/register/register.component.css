@@ -1,0 +1,17 @@
+.register-container {
+    max-width: 420px;
+    margin: 40px auto;
+    padding: 15px;
+    border: 1px solid #999;
+    border-radius: 4px;
+}
+
+.register-container .page-heading {
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 25px;
+}
+
+.register-container .login-div {
+    font-size: 14px;
+}
