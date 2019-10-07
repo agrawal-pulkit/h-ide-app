@@ -1,12 +1,15 @@
 ﻿import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 
 import { AlertService, UserService } from '../../../services/user-service';
 
 
-@Component({templateUrl: 'register.component.html'})
+@Component({
+    styleUrls: ['register.component.css'],
+    templateUrl: 'register.component.html'
+})
 export class RegisterComponent implements OnInit {
     registerForm: FormGroup;
     loading = false;
@@ -16,7 +19,8 @@ export class RegisterComponent implements OnInit {
         private formBuilder: FormBuilder,
         private router: Router,
         private userService: UserService,
-        private alertService: AlertService) { }
+        private alertService: AlertService
+    ) { }
 
     ngOnInit() {
         this.registerForm = this.formBuilder.group({
@@ -50,6 +54,8 @@ export class RegisterComponent implements OnInit {
                 error => {
                     this.alertService.error(error);
                     this.loading = false;
-                });
+                }
+            );
     }
+
 }

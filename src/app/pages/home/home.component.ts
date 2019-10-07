@@ -5,8 +5,10 @@ import { Post } from './../../../modals/post/post';
 import { PostService } from './../../../services/post-service/post-service.service';
 import { User } from 'src/modals/users/users';
 
-@Component({templateUrl: 'home.component.html'})
+
+@Component({ templateUrl: 'home.component.html' })
 export class HomeComponent implements OnInit {
+
     currentUser: User;
     posts: any;
 
@@ -19,8 +21,9 @@ export class HomeComponent implements OnInit {
     }
 
     private loadAllPosts() {
-        this.postService.getAllPost().pipe(first()).subscribe(posts => { 
-            this.posts = posts; 
+        this.postService.getAllPost().pipe(first()).subscribe(posts => {
+            this.posts = posts;
         });
     }
+
 }
