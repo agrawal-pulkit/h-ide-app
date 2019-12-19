@@ -1,3 +1,7 @@
 div.code-editor {
     max-height: 70vh;
 }
+
+.ace_text-input {
+  position: absolute!important;
+}

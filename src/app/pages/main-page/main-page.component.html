@@ -1,7 +1,7 @@
 <div>
     <nav class="navbar navbar-light bg-light ">
         <div class="container text-center p-2 ">
-            <span class="mx-auto font-weight-bold">My Own IDE</span>
+            <span class="mx-auto font-weight-bold">Hackersoon</span>
         </div>
     <div *ngIf=isLoggedIn>
         <a [routerLink]="['/post']" class="btn btn-link">Posts</a>
@@ -98,8 +98,8 @@
             <div class="label-box border">
                 <span class="mx-4 font-weight-light">Output</span>
             </div>
-            <textarea class="form-control output" rows="6" 
-            disabled="true" aria-label="output-textarea" 
+            <textarea class="form-control output" rows="6"
+            disabled="true" aria-label="output-textarea"
             [value]="(output$ | async) || ''">
         </textarea>
         </div>

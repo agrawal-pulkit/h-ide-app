@@ -63,11 +63,12 @@ const DEFAULT_LANG_MODE = 'nodejs';
         const basicEditorOptions: Partial<ace.Ace.EditorOptions> = {
             highlightActiveLine: true,
             minLines: 14,
-            maxLines: Infinity,
+            maxLines: 500,
+            autoScrollEditorIntoView: true
         };
         const extraEditorOptions = {
             enableBasicAutocompletion: true,
-            enableLiveAutocompletion: true
+            enableLiveAutocompletion: true,
         };
         return Object.assign(basicEditorOptions, extraEditorOptions);
     }
@@ -146,5 +147,5 @@ const DEFAULT_LANG_MODE = 'nodejs';
         });
     }
 
-    
+
 }
