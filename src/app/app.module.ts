@@ -16,6 +16,7 @@ import { HomeComponent } from './pages/home';
 import { LoginComponent } from './pages/login';
 import { RegisterComponent } from './pages/register';
 import { AuthGuard } from './_guards';
+import { FooterComponent } from './pages/footer/footer.component';
 
 @NgModule({
     imports: [
@@ -31,7 +32,8 @@ import { AuthGuard } from './_guards';
         HomeComponent,
         LoginComponent,
         RegisterComponent,
-        MainPageComponent
+        MainPageComponent,
+        FooterComponent
     ],
     providers: [
         AuthGuard,

@@ -1,11 +1,11 @@
 <div>
-    <nav class="navbar navbar-light bg-light ">
+    <nav class="navbar navbar-light bg-dark ">
         <div class="container text-center p-2 ">
-            <span class="mx-auto font-weight-bold">Hackersoon</span>
+            <span class="mx-auto font-weight-bold text-light ">HackerSoon</span>
         </div>
-    <div *ngIf=isLoggedIn>
+    <div  *ngIf=isLoggedIn>
         <a [routerLink]="['/post']" class="btn btn-link">Posts</a>
-    </div>
+    </div >
         <div *ngIf=!isLoggedIn>
             <a [routerLink]="['/login']" class="btn btn-link">Login</a>
         </div><div *ngIf=isLoggedIn>
